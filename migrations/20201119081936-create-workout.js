@@ -23,7 +23,7 @@ module.exports = {
       level: {
         type: Sequelize.STRING
       },
-      set: {
+      setWorkout: {
         type: Sequelize.INTEGER
       },
       createdAt: {

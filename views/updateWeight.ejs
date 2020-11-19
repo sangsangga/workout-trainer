@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Update Weight</title>
+</head>
+<body>
+   <%- include('./nav.ejs',{id}) %>
+   <form action="/users/updateWeight" method="post">
+      <label for="weigth">New Weight:</label><br>
+      <input type="number" name="weigth" id="weigth"><br>
+      <button type="submit">Update</button>
+   </form>
+</body>
+</html>

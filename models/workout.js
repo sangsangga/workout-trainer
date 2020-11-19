@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Workout.belongsToMany(models.User,{through:'UserWorkouts'});
     }
   };
   Workout.init({
@@ -19,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     startTime: DataTypes.DATE,
     repetition: DataTypes.INTEGER,
     level: DataTypes.STRING,
-    set: DataTypes.INTEGER
+    setWorkout: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Workout',
