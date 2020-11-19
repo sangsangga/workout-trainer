@@ -1,5 +1,7 @@
-const {User, Workout} = require('../models/index')
+const {User, Workout, UserWorkout} = require('../models/index')
 const compare = require('../helpers/compareHash')
+const nodemailer = require("nodemailer")
+const emailConfig = require('../ignore/emailConfig.json')
 
 class Controller {
    static getWelcome(req,res){
@@ -42,7 +44,43 @@ class Controller {
    }
 
    static joinWorkout(req,res){
-      
+      const userId = req.session.userId
+      const workoutId = req.params.id
+      const insertData = {
+         UserId:userId,
+         WorkoutId:workoutId,
+         completeTime:0
+      }
+      let dataClass;
+
+      Workout.findByPk(workoutId)
+         .then(data => {
+            dataClass = data;
+            return UserWorkout.create(insertData)
+         })
+         .then(success => {
+            res.redirect(`/users/myWorkouts/${userId}`)
+            return nodemailer.createTransport({
+               host:"smtp.gmail.com",
+               port:465,
+               secure:true, 
+               auth: {
+                  user: emailConfig.user, 
+                  pass: emailConfig.pass, 
+               },
+            })
+         })
+         .then(transporter => {
+            transporter.sendMail({
+               from:'"blackbeardvsluffy@gmail.com"',
+               to:'wandaputrasangga@gmail.com',
+               subject:"Congratulation",
+               text:`You have join workout ${dataClass.name}`
+            });
+         })
+         .catch(err => {
+            res.send(err)
+         })
    }
 
    static getLogin(req,res){
@@ -75,23 +113,75 @@ class Controller {
 
    static getUpdateWeight(req,res){
       const id =+req.params.id
-      User.findByPk()
+      User.findByPk(id)
+         .then(user => {
+            res.render('updateWeight',{user,id:req.session.userId})
+         })
+         .catch(err => {
+            console.log(err);
+            res.send(err);
+         })
    }
    static postUpdateWeight(req,res){
       const id = +req.params.id
       const weight = req.body.weigth
+      console.log(id);
       User.update({weigth:weight},{
          where:{
             id:id
          }
       })
-      .then(res => {
+      .then(success => {
          res.redirect('/workouts')
       })
       .catch(err => {
          console.log(err);
          res.send(err)
       })
+   }
+
+   static deleteAccount(req,res){
+      const id = +req.params.id;
+      User.destroy({where:{id:id}})
+         .then(success => {
+            res.redirect('/workouts')
+         })
+         .catch(err => {
+            console.log(err);
+            res.send(err);
+         })
+   }
+
+   static getMyWorkouts(req,res){
+      const id = +req.params.id
+      User.findByPk(id,{
+         include:Workout
+      })
+         .then(user => {
+            res.render('myWorkout',{user})
+         })
+         .catch(err => {
+            console.log(err);
+            res.send(err.message);
+         })
+   }
+
+   static getWorkoutPage(req,res){
+      const id = +req.params.id
+      Workout.findByPk(id,{
+         include:{
+            model:User,
+            required:false
+         }
+      })
+      .then(workout =>{
+         res.render('workoutPage',{workout})
+      })
+      .catch(err => {
+         console.log(err);
+         res.send(err.message)
+      })
+
    }
 }
 

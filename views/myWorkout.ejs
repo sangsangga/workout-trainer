@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>My Workouts</title>
+</head>
+<body>
+   <h1>Workouts: <%= user.fullname %> </h1>
+   <table>
+      <tr>
+         <th>Name</th>
+         <th>Start Time</th>
+         <th>Repetition</th>
+         <th>Set</th>
+         <th>Level</th>
+         <th>Actions</th>
+      </tr>
+      <% user.Workouts.forEach(element => { %>
+         <tr>
+            <td><%= element.name %> </td>
+            <td><%= element.startTime %> </td>
+            <td><%= element.repetition %> </td>
+            <td><%= element.setWorkout %> </td>
+            <td><%= element.level %> </td>
+            <td>
+               <a href="/seeUsers/<%= element.id %> ">See Participants</a>
+            </td>
+         </tr>
+      <% }) %>
+   </table>
+</body>
+</html>

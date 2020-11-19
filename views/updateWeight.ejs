@@ -7,9 +7,9 @@
 </head>
 <body>
    <%- include('./nav.ejs',{id}) %>
-   <form action="/users/updateWeight" method="post">
-      <label for="weigth">New Weight:</label><br>
-      <input type="number" name="weigth" id="weigth"><br>
+   <form action="/users/updateWeight/<%= user.id %> " method="post">
+      <label for="weigth">Weight:</label><br>
+      <input type="number" name="weigth" id="weigth" value=<%= user.weigth %> ><br>
       <button type="submit">Update</button>
    </form>
 </body>

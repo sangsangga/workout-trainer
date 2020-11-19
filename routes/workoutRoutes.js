@@ -9,6 +9,8 @@ function userAuthentication(req,res,next){
       res.redirect('/users/login?error=you must login first')
    }
 }
+
+router.get('/seeUsers/:id',Controller.getWorkoutPage)
 router.use(userAuthentication)
 router.get('/',Controller.getAllWorkouts)
 

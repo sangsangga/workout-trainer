@@ -6,8 +6,10 @@ router.get('/register',Controller.getRegister)
 router.post('/register',Controller.postRegister)
 router.get('/login',Controller.getLogin)
 router.post('/login',Controller.postLogin)
-router.get('/joinWorkout',Controller.joinWorkout)
+router.get('/joinWorkout/:id',Controller.joinWorkout)
 router.get('/updateWeight/:id',Controller.getUpdateWeight)
 router.post('/updateWeight/:id',Controller.postUpdateWeight)
+router.post('/destroy/:id',Controller.deleteAccount)
+router.get('/myWorkouts/:id',Controller.getMyWorkouts)
 
 module.exports = router

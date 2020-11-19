@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsToMany(models.Workout,{through:'UserWorkouts'})
     }
+
+    formatWeight(){
+      return `${this.weigth} kg`
+    }
   };
   User.init({
     email: DataTypes.STRING,
