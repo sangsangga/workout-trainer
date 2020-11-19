@@ -1,0 +1,21 @@
+[
+   {
+      "email":"wandaputrasangga@gmail.com",
+      "password":"1234567",
+      "fullname":"Sangga Wandaputra",
+      "birthdate":"11-08-1990",
+      "weigth":75,
+      "height":165,
+      "gender":"male"
+   },
+   {
+      "email":"blackbeardvsluffy@gmail.com",
+      "password":"221123",
+      "fullname":"Ade Rai",
+      "birthdate":"10-07-1990",
+      "weigth":85,
+      "height":175,
+      "gender":"male"
+   }
+
+]
