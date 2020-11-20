@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Available Workouts</title>
+</head>
+<body>
+   <%- include('./nav.ejs',{id}) %> 
+   <a href="/users/profile">My Profile</a>
+   <a href="/logout">Log Out</a>
+   <a href="/workouts/add">Add Workout</a>
+   <table>
+      <tr>
+         <th>Name</th>
+         <th>Start Time</th>
+         <th>Repetition</th>
+         <th>Set</th>
+         <th>Level</th>
+         <th>Actions</th>
+      </tr>
+      <% workouts.forEach(element => { %>
+         <tr>
+            <td><%= element.name %> </td>
+            <td><%= element.startTime %> </td>
+            <td><%= element.repetition %> </td>
+            <td><%= element.setWorkout %> </td>
+            <td><%= element.level %> </td>
+            <td>
+               <a href="/workouts/seeUsers/<%= element.id %> ">See Participants</a>
+               |
+               <a href="/users/joinWorkout/<%= element.id %>">Join</a>
+            </td>
+         </tr>
+      <% }) %>
+   </table>
+</body>
+</html>

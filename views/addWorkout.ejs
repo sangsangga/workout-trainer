@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Add Workout</title>
+</head>
+<body>
+   <h1>Add Workout</h1>
+   <form action="/workouts/add" method="post">
+      <label for="">Name</label><br>
+      <input type="text" name="name" id="">
+      <label for="">Description:</label><br>
+      <textarea name="description" id="" cols="30" rows="10"></textarea><br>
+      <label for="">startTime</label><br>
+      <input type="datetime-local" name="startTime" id=""><br>
+      <label for="">Repetition</label><br>
+      <input type="number" name="repetition" id=""><br>
+      <label for="">Level</label><br>
+      <input type="text" name="level" id=""><br>
+      <label for="">Set:</label><br>
+      <input type="number" name="setWorkout" id=""><br>
+
+      <button type="submit">Add</button>
+   </form>
+</body>
+</html>
