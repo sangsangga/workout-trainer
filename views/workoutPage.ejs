@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Workout</title>
+</head>
+<body>
+   <h1>Workout <%= workout.name %> </h1>
+   <h2>Action:</h2>
+   <button><a href="">Finish</a></button>
+   <h3>Participants:</h3>
+   <table>
+      <tr>
+         <th>Name</th>
+         <th>Weight</th>
+      </tr>
+      <% workout.Users.forEach(element => { %>
+         <tr>
+            <td><%= element.fullname %> </td>
+            <td><%= element.weigth %> </td>
+         </tr>
+      <% }) %>
+   </table>
+</body>
+</html>
