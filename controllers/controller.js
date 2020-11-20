@@ -24,6 +24,8 @@ class Controller {
       }
       User.create(user)
          .then(success => {
+            console.log(success);
+            req.session.name = user.fullname,
             res.redirect('/workouts')
          })
          .catch(err =>{
@@ -182,6 +184,50 @@ class Controller {
          res.send(err.message)
       })
 
+   }
+
+   static getMyProfile(req,res){
+      const id = +req.session.userId
+      console.log(req.session);
+      User.findByPk(id)
+         .then(user => {
+            let bmi = User.calculateBMI(user.weigth,user.height)
+            res.render('myProfile',{user,bmi,id})
+         })
+         .catch(err => {
+            console.log(err);
+         })
+   }
+
+   static logOut(req,res){
+      req.session.destroy((err) =>{
+         if(err)
+            return res.send(err)
+         res.redirect('/')
+      })
+   }
+
+   static addWorkout(req,res){
+      res.render('addWorkout')
+   }
+
+   static postAddWorkout(req,res){
+      const workout = {
+         name:req.body.name,
+         description:req.body.description,
+         startTime:req.body.startTime,
+         repetition:req.body.repetition,
+         level:req.body.level,
+         setWorkout: req.body.setWorkout
+      }
+
+      Workout.create(workout)
+         .then(success => {
+            res.redirect('/workouts')
+         })
+         .catch(err => {
+            console.log(err);
+         })
    }
 }
 

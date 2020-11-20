@@ -6,6 +6,7 @@ const Controller = require('../controllers/controller.js')
 
 
 router.get('/',Controller.getWelcome)
+router.get('/logout',Controller.logOut)
 router.use('/users',userRouter)
 router.use('/workouts',workoutRouter)
 

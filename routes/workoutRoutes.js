@@ -13,5 +13,7 @@ function userAuthentication(req,res,next){
 router.get('/seeUsers/:id',Controller.getWorkoutPage)
 router.use(userAuthentication)
 router.get('/',Controller.getAllWorkouts)
+router.get('/add',Controller.addWorkout)
+router.post('/add',Controller.postAddWorkout)
 
 module.exports = router

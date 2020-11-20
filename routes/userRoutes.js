@@ -11,5 +11,6 @@ router.get('/updateWeight/:id',Controller.getUpdateWeight)
 router.post('/updateWeight/:id',Controller.postUpdateWeight)
 router.post('/destroy/:id',Controller.deleteAccount)
 router.get('/myWorkouts/:id',Controller.getMyWorkouts)
+router.get('/profile',Controller.getMyProfile)
 
 module.exports = router

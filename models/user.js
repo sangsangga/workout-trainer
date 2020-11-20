@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsToMany(models.Workout,{through:'UserWorkouts'})
     }
+    static calculateBMI(weight,height){
+      return weight/((height/100)** 2)
+    }
 
     formatWeight(){
       return `${this.weigth} kg`
